@@ -32,29 +32,23 @@ function DayCard({ item, isSelected, onClick }: {
       className={`day-card ${isSelected ? 'day-card--selected' : ''}`}
       onClick={onClick}
     >
-      <div className="day-card__image" style={{ backgroundImage: `url(${item.image})` }}>
-        <div className="day-card__image-overlay" />
+      <div className="day-card__thumb" style={{ backgroundImage: `url(${item.image})` }}>
+        <div className="day-card__thumb-overlay" />
         <span className="day-card__day-badge">DAY {item.day}</span>
       </div>
-      <div className="day-card__info">
-        <div className="day-card__info-row">
-          <span className="day-card__label">날짜</span>
-          <span className={`day-card__value ${isWeekend ? 'day-card__value--weekend' : ''}`}>
+      <div className="day-card__body">
+        <div className="day-card__top">
+          <h3 className="day-card__title">{item.title}</h3>
+          <span className={`day-card__date ${isWeekend ? 'day-card__date--weekend' : ''}`}>
             {item.date} ({item.weekday})
           </span>
         </div>
-        <div className="day-card__info-row">
-          <span className="day-card__label">도시</span>
-          <span className="day-card__value">{item.city}, {item.country}</span>
+        <div className="day-card__meta">
+          <span className="day-card__city">{item.city}, {item.country}</span>
+          <span className="day-card__divider">|</span>
+          <span className="day-card__transport">{item.transport}</span>
         </div>
-        <div className="day-card__info-row">
-          <span className="day-card__label">이동</span>
-          <span className="day-card__value">{item.transport}</span>
-        </div>
-        <div className="day-card__info-row">
-          <span className="day-card__label">관광</span>
-          <span className="day-card__value day-card__value--activities">{item.activities}</span>
-        </div>
+        <p className="day-card__activities">{item.activities}</p>
       </div>
     </div>
   )

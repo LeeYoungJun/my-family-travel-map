@@ -187,123 +187,153 @@
   background: #94a3b8;
 }
 
-/* ===== Day Card — horizontal image + text ===== */
+/* ===== Day Card ===== */
 .day-card {
   display: flex;
   border-radius: 12px;
   background: #ffffff;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  border: 2px solid transparent;
-  min-height: 0;
+  border: 1px solid #e8ecf1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .day-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: #d0d7e0;
 }
 
 .day-card--selected {
   border-color: #2563eb;
   box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.12),
-    0 6px 20px rgba(37, 99, 235, 0.1);
-  transform: translateY(-1px);
+    0 0 0 2px rgba(37, 99, 235, 0.15),
+    0 4px 16px rgba(37, 99, 235, 0.1);
 }
 
-/* Card image — left side */
-.day-card__image {
+/* Thumbnail — left */
+.day-card__thumb {
   position: relative;
-  width: 100px;
-  min-width: 100px;
+  width: 110px;
+  min-width: 110px;
   background-size: cover;
   background-position: center;
-  overflow: hidden;
 }
 
-.day-card__image-overlay {
+.day-card__thumb-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.35) 100%
+    135deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.25) 100%
   );
 }
 
 .day-card__day-badge {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  padding: 2px 7px;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 1px;
   color: #ffffff;
-  background: rgba(37, 99, 235, 0.85);
-  border-radius: 5px;
+  background: rgba(37, 99, 235, 0.9);
+  border-radius: 6px;
   backdrop-filter: blur(4px);
 }
 
 .day-card--selected .day-card__day-badge {
-  background: rgba(37, 99, 235, 1);
+  background: #2563eb;
 }
 
-/* Card info — right side */
-.day-card__info {
+/* Body — right */
+.day-card__body {
   flex: 1;
-  padding: 10px 12px;
+  padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center;
   min-width: 0;
+  gap: 6px;
 }
 
-.day-card__info-row {
+.day-card__top {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
   gap: 8px;
-  line-height: 1.4;
 }
 
-.day-card__label {
-  font-size: 0.68rem;
+.day-card__title {
+  margin: 0;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: #94a3b8;
-  min-width: 28px;
-  flex-shrink: 0;
-}
-
-.day-card__value {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #334155;
+  color: #1e293b;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.3;
 }
 
-.day-card__value--weekend {
+.day-card--selected .day-card__title {
+  color: #1d4ed8;
+}
+
+.day-card__date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #94a3b8;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.day-card__date--weekend {
   color: #ef4444;
 }
 
-.day-card__value--activities {
-  white-space: normal;
-  line-height: 1.35;
-  font-weight: 500;
+/* Meta row: city | transport */
+.day-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
   color: #64748b;
-  font-size: 0.73rem;
+  line-height: 1;
 }
 
-.day-card--selected .day-card__value {
-  color: #1e40af;
+.day-card__city {
+  font-weight: 600;
 }
 
-.day-card--selected .day-card__value--weekend {
-  color: #ef4444;
+.day-card__divider {
+  color: #d1d5db;
+  font-weight: 300;
 }
 
-.day-card--selected .day-card__value--activities {
+.day-card__transport {
+  font-weight: 500;
+}
+
+/* Activities */
+.day-card__activities {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #94a3b8;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.day-card--selected .day-card__meta {
   color: #3b82f6;
+}
+
+.day-card--selected .day-card__activities {
+  color: #60a5fa;
 }

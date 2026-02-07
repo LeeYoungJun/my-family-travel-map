@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { GoogleMap, LoadScript, MarkerF, PolylineF, OverlayViewF, OverlayView } from '@react-google-maps/api'
 import Sidebar from './components/Sidebar'
-import { schedule, cityMarkers, routePath } from './data/schedule'
+import { schedule, routePath } from './data/schedule'
 import './App.css'
 
 const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
@@ -181,18 +181,21 @@ function App() {
                 ],
               }}
             >
-              {!showRoute && cityMarkers.map((marker) => (
-                <MarkerF
-                  key={marker.city}
-                  position={{ lat: marker.lat, lng: marker.lng }}
-                  label={{
-                    text: marker.city,
-                    fontSize: '13px',
-                    fontWeight: '700',
-                    className: 'marker-label',
-                  }}
-                />
-              ))}
+              {!showRoute && selectedDay !== null && (() => {
+                const selected = schedule.find(s => s.day === selectedDay)
+                if (!selected) return null
+                return (
+                  <MarkerF
+                    position={{ lat: selected.lat, lng: selected.lng }}
+                    label={{
+                      text: selected.city,
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      className: 'marker-label',
+                    }}
+                  />
+                )
+              })()}
 
               {showRoute && (
                 <>
