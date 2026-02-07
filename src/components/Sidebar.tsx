@@ -8,6 +8,8 @@ interface SidebarProps {
   onSelectDay: (day: number | null) => void
   collapsed: boolean
   onToggleCollapse: () => void
+  showRoute: boolean
+  onToggleRoute: () => void
 }
 
 function DayCard({ item, isSelected, onClick }: {
@@ -33,24 +35,32 @@ function DayCard({ item, isSelected, onClick }: {
       <div className="day-card__image" style={{ backgroundImage: `url(${item.image})` }}>
         <div className="day-card__image-overlay" />
         <span className="day-card__day-badge">DAY {item.day}</span>
-        <div className="day-card__image-text">
-          <span className="day-card__city-name">{item.city}</span>
-        </div>
       </div>
-      <div className="day-card__body">
-        <div className="day-card__header">
-          <span className={`day-card__date ${isWeekend ? 'day-card__date--weekend' : ''}`}>
+      <div className="day-card__info">
+        <div className="day-card__info-row">
+          <span className="day-card__label">날짜</span>
+          <span className={`day-card__value ${isWeekend ? 'day-card__value--weekend' : ''}`}>
             {item.date} ({item.weekday})
           </span>
-          <span className="day-card__country">{item.country}</span>
         </div>
-        <h3 className="day-card__title">{item.title}</h3>
+        <div className="day-card__info-row">
+          <span className="day-card__label">도시</span>
+          <span className="day-card__value">{item.city}, {item.country}</span>
+        </div>
+        <div className="day-card__info-row">
+          <span className="day-card__label">이동</span>
+          <span className="day-card__value">{item.transport}</span>
+        </div>
+        <div className="day-card__info-row">
+          <span className="day-card__label">관광</span>
+          <span className="day-card__value day-card__value--activities">{item.activities}</span>
+        </div>
       </div>
     </div>
   )
 }
 
-export default function Sidebar({ selectedDay, onSelectDay, collapsed, onToggleCollapse }: SidebarProps) {
+export default function Sidebar({ selectedDay, onSelectDay, collapsed, onToggleCollapse, showRoute, onToggleRoute }: SidebarProps) {
   return (
     <>
       <button
@@ -81,6 +91,16 @@ export default function Sidebar({ selectedDay, onSelectDay, collapsed, onToggleC
             </div>
             <span className="sidebar__progress-text">14일 / 6개 도시</span>
           </div>
+          <button
+            className={`sidebar__route-btn ${showRoute ? 'sidebar__route-btn--active' : ''}`}
+            onClick={onToggleRoute}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+              <path d="M3 17l6-6 4 4 8-8" />
+              <polyline points="17 7 21 7 21 11" />
+            </svg>
+            {showRoute ? '경로 숨기기' : '경로 보기'}
+          </button>
         </div>
         <div className="sidebar__list">
           {schedule.map((item) => (
