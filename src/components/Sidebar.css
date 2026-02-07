@@ -10,6 +10,7 @@
   z-index: 100;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -163,8 +164,11 @@
 /* Scrollable list */
 .sidebar__list {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
-  padding: 12px 14px;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  padding: 12px 14px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -190,6 +194,7 @@
 /* ===== Day Card ===== */
 .day-card {
   display: flex;
+  min-height: 120px;
   border-radius: 12px;
   background: #ffffff;
   cursor: pointer;
@@ -197,6 +202,7 @@
   overflow: hidden;
   border: 1px solid #e8ecf1;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
 }
 
 .day-card:hover {
@@ -251,12 +257,12 @@
 /* Body — right */
 .day-card__body {
   flex: 1;
-  padding: 10px 14px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  gap: 6px;
+  gap: 8px;
 }
 
 .day-card__top {
@@ -268,7 +274,7 @@
 
 .day-card__title {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #1e293b;
   white-space: nowrap;
@@ -282,7 +288,7 @@
 }
 
 .day-card__date {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #94a3b8;
   white-space: nowrap;
@@ -298,7 +304,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: #64748b;
   line-height: 1;
 }
@@ -319,14 +325,14 @@
 /* Activities */
 .day-card__activities {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   font-weight: 500;
   color: #94a3b8;
-  line-height: 1.4;
+  line-height: 1.5;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
