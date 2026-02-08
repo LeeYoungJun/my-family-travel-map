@@ -59,66 +59,116 @@
 
 /* Header */
 .sidebar__header {
-  padding: 24px 20px 16px;
+  padding: 0 0 12px;
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
 }
 
-.sidebar__header-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.sidebar__icon {
-  font-size: 1.6rem;
-  line-height: 1;
-}
-
-.sidebar__title {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0;
-  letter-spacing: -0.3px;
-}
-
-.sidebar__subtitle {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  margin: 2px 0 0 0;
-  font-weight: 500;
-}
-
-/* Progress */
-.sidebar__progress {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.sidebar__progress-bar {
-  flex: 1;
-  height: 4px;
-  background: #e2e8f0;
-  border-radius: 4px;
+/* Banner */
+.sidebar__header-banner {
+  position: relative;
+  height: 110px;
   overflow: hidden;
 }
 
-.sidebar__progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #2563eb, #7c3aed);
-  border-radius: 4px;
-  transition: width 0.5s ease;
+.sidebar__header-banner-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.92) 0%, rgba(124, 58, 237, 0.88) 100%),
+    url('https://images.unsplash.com/photo-1541849546-216549ae216d?w=800&q=60') center/cover no-repeat;
 }
 
-.sidebar__progress-text {
-  font-size: 0.7rem;
+.sidebar__header-banner-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.sidebar__badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 3px 10px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+
+.sidebar__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.3px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar__subtitle {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 4px 0 0 0;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+/* Stats row */
+.sidebar__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 12px 20px;
+}
+
+.sidebar__stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.sidebar__stat-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.sidebar__stat div {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__stat-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sidebar__stat-label {
+  font-size: 0.68rem;
   color: #94a3b8;
-  font-weight: 600;
-  white-space: nowrap;
+  font-weight: 500;
+}
+
+.sidebar__stat-divider {
+  width: 1px;
+  height: 28px;
+  background: #e2e8f0;
+  margin: 0 12px;
+  flex-shrink: 0;
 }
 
 /* Route button */
@@ -127,7 +177,8 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  width: 100%;
+  width: calc(100% - 40px);
+  margin: 0 auto;
   padding: 10px 16px;
   background: #f1f5f9;
   color: #475569;
@@ -334,6 +385,57 @@
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+/* Action buttons */
+.day-card__actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.day-card__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.day-card__action-btn:hover {
+  border-color: #c7d2fe;
+  background: #f0f4ff;
+}
+
+.day-card__action-btn--hotel:hover,
+.day-card__action-btn--hotel.day-card__action-btn--active {
+  background: #ede9fe;
+  border-color: #a78bfa;
+  color: #7c3aed;
+}
+
+.day-card__action-btn--restaurant:hover,
+.day-card__action-btn--restaurant.day-card__action-btn--active {
+  background: #fff7ed;
+  border-color: #fdba74;
+  color: #ea580c;
+}
+
+.day-card__action-btn--active {
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.day-card__action-btn svg {
+  flex-shrink: 0;
 }
 
 .day-card--selected .day-card__meta {
