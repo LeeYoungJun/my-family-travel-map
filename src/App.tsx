@@ -152,6 +152,11 @@ function App() {
   }, [selectedDay, handleSelectDay])
 
   const onMapLoad = useCallback((mapInstance: google.maps.Map) => {
+    mapInstance.setOptions({
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.TOP_RIGHT,
+      },
+    })
     setMap(mapInstance)
   }, [])
 
@@ -200,9 +205,6 @@ function App() {
               onLoad={onMapLoad}
               options={{
                 mapTypeControl: true,
-                mapTypeControlOptions: {
-                  position: google.maps.ControlPosition.TOP_RIGHT,
-                },
                 styles: [
                   { featureType: 'poi', stylers: [{ visibility: 'simplified' }] },
                   { featureType: 'transit', stylers: [{ visibility: 'off' }] },
